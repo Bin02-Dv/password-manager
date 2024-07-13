@@ -1,19 +1,48 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .models import PasswordEntry
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
-def password_manager(request):
-    entries = PasswordEntry.objects.all()
-    return render(request, 'password_manager_app/password_manager.html', {'entries': entries})
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
 
-def add_password(request):
+
+def signin(request):
     if request.method == 'POST':
-        website = request.POST.get('website', '')
-        username = request.POST.get('username', '')
-        password = request.POST.get('password', '')
+        username = request.POST['email']
+        password = request.POST['password']
 
-        if website and username and password:
-            PasswordEntry.objects.create(website=website, username=username, password=password)
-            return JsonResponse({'success': True})
-    return JsonResponse({'success': False})
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/dashboard')
+        else:
+            messages.error(request, "Invalid Credentials")
+            return redirect('/')
+    return render(request, 'login.html')
+
+def signup(request):
+    if request.method == 'POST':
+        fullname = request.POST['fullname']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        if confirm_password != password:
+            messages.error(request, "Pssword and confirm password missed match!!")
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email already exist!!")      
+        else:
+            new_user = User.objects.create_user(username=email, email=email, first_name=fullname, password=password)
+            new_user.save()
+            return redirect('/')
+    return render(request, 'register.html')
+
+@login_required(login_url='/')
+def dashboard(request):
+    return render(request, 'index.html')
 

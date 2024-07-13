@@ -1,7 +1,6 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
-class PasswordEntry(models.Model):
-    website = models.CharField(max_length=255)
-    username = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
+User = get_user_model()
+
 

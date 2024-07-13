@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import password_manager, add_password
+from . import views
 
 urlpatterns = [
-    path('', password_manager, name='password_manager'),
-    path('add_password/', add_password, name='add_password'),
+    path('', views.signin, name='signin'),
+    path('signup/', views.signup, name='signup'),
+    path('logout/', views.logout, name='logout'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]

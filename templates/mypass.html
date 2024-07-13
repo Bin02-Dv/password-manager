@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+    <style>
+        .strength-meter {
+            display: flex;
+            height: 5px;
+            margin-top: 5px;
+        }
+
+        .strength-meter div {
+            flex: 1;
+            background: #ddd;
+            margin-right: 2px;
+        }
+
+        .strength-meter div:last-child {
+            margin-right: 0;
+        }
+
+        .strength-meter div.weak {
+            background: red;
+        }
+
+        .strength-meter div.medium {
+            background: orange;
+        }
+
+        .strength-meter div.strong {
+            background: rgb(45, 213, 45);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            /* margin: 20px; */
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section id="header" class="nav">
+        <nav>
+            <ul>
+                <p class="desc">Slide Navigation</p>
+                <!-- <i class="fa fa-close" id="menubtn"></i> -->
+                <li>
+                    <span><i class="fa fa-dashboard"></i></span>
+                    <a href="#"> Dashboard</a>
+                </li>
+
+                <li>
+                    <span><i class="fa fa-lock"></i></span>
+                    <a href="">My Password</a>
+                </li>
+
+                <li>
+                    <span><i class="fa fa-user-circle"></i></span>
+                    <a href="profile.html">Profile</a>
+                </li>
+
+                <li>
+                    <span><i class="fa fa-sign-out"></i></span>
+                    <a href="login.html">Sign out</a>
+                </li>
+
+            </ul>
+        </nav>
+    </section>
+    <div class="container">
+        <section class="header-nav">
+            <nav>
+                <ul>
+                    <p class="desc">Slide Navigation</p>
+                    <!-- <i class="fa fa-close" id="menubtn"></i> -->
+                    <li>
+                        <span><i class="fa fa-dashboard"></i></span>
+                        <a href="index.html"> Dashboard</a>
+                    </li>
+
+                    <li>
+                        <span><i class="fa fa-lock"></i></span>
+                        <a href="">My Password</a>
+                    </li>
+
+                    <li>
+                        <span><i class="fa fa-user-circle"></i></span>
+                        <a href="profile.html">Profile</a>
+                    </li>
+
+                    <li>
+                        <span><i class="fa fa-sign-out"></i></span>
+                        <a href="login.html">Sign out</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+                <div class="aside">
+                    <header>
+                        <div class="bar">
+                            <span><i class="fa fa-bars" id="menubtn" ></i></span>
+                        </div>
+
+                        <div class="profile">
+                            <span><i class="fa fa-user"></i></span>
+                            <p>User</p>
+                        </div>
+    
+                    </header>
+                    <main>
+                        <table id="example" class="display responsive nowrap" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>My Passwords</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+                    </main>
+                </div>
+        </section>
+        
+        
+    </div>
+
+
+
+    <script src="../static/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+</body>
+</html>
