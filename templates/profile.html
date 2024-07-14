@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="../static/styles.css">
     <link rel="stylesheet" href="../static/fontawesome-free/css/all.min.css">
     <style>
@@ -41,42 +41,18 @@
         <div class="form">
             <form action="" method="post">
                 <div class="back">
-                    <span>Dashboard\ <a href="index.html">Back</a></span>
+                    <span>Dashboard\ <a href="/dashboard">Back</a></span>
                 </div>
                 <h1>Profile</h1>
                 <div class="form-group">
                     <label for="">Full Name</label>
-                    <input type="text" name="" value="" placeholder="Full Name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="">Number</label>
-                    <input type="number" name="" value="" placeholder="Number" required>
+                    <input type="text" name="" value="{{user.first_name}}" placeholder="Full Name" required>
                 </div>
 
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="email" name="" value="" placeholder="Example@gmail.com" required>
+                    <input type="email" name="" value="{{user.email}}" placeholder="Example@gmail.com" required>
                 </div>
-
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" class="form-input" placeholder="password" maxlength="8" required>
-                    <!-- <div id="strengthMeter" class="strength-meter">
-                        <div></div><div></div><div></div><div></div>
-                    </div> -->
-                    <!-- <small>Password must be 8 characters max.</small> -->
-                </div>
-
-                <div class="form-group">
-                    <label for="">Confirm Password</label>
-                    <input type="text" name="" value="" placeholder="Confirm Your Password" maxlength="8" required>
-                </div>
-
-                <!-- <div class="form-group btn">
-                    <button type="submit">Register</button>
-                    <p>Already have an account <a href="login.html">Login</a></p>
-                </div> -->
             </form>
         </div>
     </div>

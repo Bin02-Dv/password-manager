@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Manager</title>
-    <link rel="stylesheet" href="../static/styles.css">
-    <link rel="stylesheet" href="../static/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome-free/css/all.min.css' %}">
     <style>
         .strength-meter {
             display: flex;
@@ -44,22 +45,22 @@
                 <!-- <i class="fa fa-close" id="menubtn"></i> -->
                 <li>
                     <span><i class="fa fa-dashboard"></i></span>
-                    <a href="#"> Dashboard</a>
+                    <a href="/dashboard"> Dashboard</a>
                 </li>
 
                 <li>
                     <span><i class="fa fa-lock"></i></span>
-                    <a href="mypass.html">My Password</a>
+                    <a href="/mypass">My Password</a>
                 </li>
 
                 <li>
                     <span><i class="fa fa-user-circle"></i></span>
-                    <a href="profile.html">Profile</a>
+                    <a href="/profile">Profile</a>
                 </li>
 
                 <li>
                     <span><i class="fa fa-sign-out"></i></span>
-                    <a href="login.html">Sign out</a>
+                    <a href="/logout">Sign out</a>
                 </li>
 
             </ul>
@@ -73,22 +74,22 @@
                     <!-- <i class="fa fa-close" id="menubtn"></i> -->
                     <li>
                         <span><i class="fa fa-dashboard"></i></span>
-                        <a href="#"> Dashboard</a>
+                        <a href="/dashboard"> Dashboard</a>
                     </li>
 
                     <li>
                         <span><i class="fa fa-lock"></i></span>
-                        <a href="mypass.html">My Password</a>
+                        <a href="/mypass">My Password</a>
                     </li>
 
                     <li>
                         <span><i class="fa fa-user-circle"></i></span>
-                        <a href="profile.html">Profile</a>
+                        <a href="/profile">Profile</a>
                     </li>
 
                     <li>
                         <span><i class="fa fa-sign-out"></i></span>
-                        <a href="login.html">Sign out</a>
+                        <a href="/logout">Sign out</a>
                     </li>
 
                 </ul>
@@ -102,33 +103,43 @@
 
                         <div class="profile">
                             <span><i class="fa fa-user"></i></span>
-                            <p>User</p>
+                            <p>{{user.username}}</p>
                         </div>
     
                     </header>
                     <main>
                         <div class="form-group">
-                                <form action="" id="form">
+                            <form id="form" method="post">
+                                {% csrf_token %}
                                 <div class="pass-header">
                                     <h1>Password Generator</h1>
                                     <p>Making strong password is important.</p>
                                     <p>Click the button below to generate a password</p>
-                                    <h3>This password is for: <span>Ishaq</span></h3>
+                                    <h3>This password is for: <span>{{user.username}}</span></h3>
                                 </div>
-                                    <label for="password"><i class="fa fa-lock" style="color: black;"></i> Password:</label>
-                                    <input type="text" id="password" class="form-input" value="" placeholder="Password" required readonly>
-                                    <div id="strengthMeter" class="strength-meter">
-                                            <!-- <div></div><div></div><div></div><div></div> -->
-                                    </div><br>
-                                    <!-- <input type="password" id="password" class="form-input" placeholder="Confirm Password" required> -->
-                                    <!-- <small>Your password has be strong please.</small> -->
-                                    <div class="btn">
-                                        <button type="button" id="generatePassword">Generate</button>
-                                        <button>Save</button>
-                                    </div>
-                                    <p>Click following link to create a password <a href="index.html" style="border-bottom: 1px solid blue;">Create</a></p>
-                                </form>
-                            </div>
+                                {% if messages %}
+                                {% for message in messages %}
+                                {% if message.tags == 'error' %}
+                                <span style="color: red;">{{message}}</span>
+                                {% else %}
+                                <span style="color: green;">{{message}}</span>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %} <br><br>
+                                <label for="password"><i class="fa fa-lock" style="color: black;"></i> Password:</label>
+                                <input type="text" id="password" class="form-input" name="password" placeholder="Password" required readonly>
+                                <div id="strengthMeter" class="strength-meter">
+                                        <!-- <div></div><div></div><div></div><div></div> -->
+                                </div><br>
+                                <!-- <input type="password" id="password" class="form-input" placeholder="Confirm Password" required> -->
+                                <!-- <small>Your password has be strong please.</small> -->
+                                <div class="btn">
+                                    <button type="button" id="generatePassword">Generate</button>
+                                    <button>Save</button>
+                                </div>
+                                <p>Click following link to create a password <a href="/dashboard" style="border-bottom: 1px solid blue;">Create</a></p>
+                            </form>
+                        </div>
                     </main>
                 </div>
         </section>
@@ -136,6 +147,6 @@
 
 
 
-    <script src="../static/js/script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

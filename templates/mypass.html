@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Manager</title>
-    <link rel="stylesheet" href="../static/styles.css">
-    <link rel="stylesheet" href="../static/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome-free/css/all.min.css' %}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
     <style>
@@ -55,22 +56,22 @@
                 <!-- <i class="fa fa-close" id="menubtn"></i> -->
                 <li>
                     <span><i class="fa fa-dashboard"></i></span>
-                    <a href="#"> Dashboard</a>
+                    <a href="/dashboard"> Dashboard</a>
                 </li>
 
                 <li>
                     <span><i class="fa fa-lock"></i></span>
-                    <a href="">My Password</a>
+                    <a href="/mypass">My Password</a>
                 </li>
 
                 <li>
                     <span><i class="fa fa-user-circle"></i></span>
-                    <a href="profile.html">Profile</a>
+                    <a href="/profile">Profile</a>
                 </li>
 
                 <li>
                     <span><i class="fa fa-sign-out"></i></span>
-                    <a href="login.html">Sign out</a>
+                    <a href="/logout">Sign out</a>
                 </li>
 
             </ul>
@@ -84,22 +85,22 @@
                     <!-- <i class="fa fa-close" id="menubtn"></i> -->
                     <li>
                         <span><i class="fa fa-dashboard"></i></span>
-                        <a href="index.html"> Dashboard</a>
+                        <a href="/dashboard"> Dashboard</a>
                     </li>
 
                     <li>
                         <span><i class="fa fa-lock"></i></span>
-                        <a href="">My Password</a>
+                        <a href="/mypass">My Password</a>
                     </li>
 
                     <li>
                         <span><i class="fa fa-user-circle"></i></span>
-                        <a href="profile.html">Profile</a>
+                        <a href="/profile">Profile</a>
                     </li>
 
                     <li>
                         <span><i class="fa fa-sign-out"></i></span>
-                        <a href="login.html">Sign out</a>
+                        <a href="/logout">Sign out</a>
                     </li>
 
                 </ul>
@@ -113,7 +114,7 @@
 
                         <div class="profile">
                             <span><i class="fa fa-user"></i></span>
-                            <p>User</p>
+                            <p>{{user.username}}</p>
                         </div>
     
                     </header>
@@ -125,9 +126,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% if passwords %}
+                                {% for password in passwords %}
                                 <tr>
-                                    <td>Tiger Nixon</td>
+                                    <td>{{password.pass_word}}</td>
                                 </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td>No passwords</td>
+                                </tr>
+                                {% endif %}
                                 <!-- Add more rows as needed -->
                             </tbody>
                         </table>
@@ -140,7 +149,7 @@
 
 
 
-    <script src="../static/js/script.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
